@@ -6,6 +6,7 @@
 * [x] The controller should be able to create a new company
 *    [x] Also assign users from the users table by ID
 *[x] The controller should be able to list all companies
-*    [ ] and related users
-[x] The controller should be able to delete a company
-[ ]remove the relations but not the users
+*    [x] and related users
+* [x] The controller should be able to delete a company
+* [x] remove the relations but not the users
+
