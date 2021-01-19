@@ -37,7 +37,7 @@ When the API receives the request to upload the document, it should:
   * `userId` - user that signed the document
   * `email` - email of that specific user at the time of the sign (current email)
   * `createdAt` - date of "Sign"
-* It should generate the PDF with the "Signed Signal (user name/date)" (in case its need, did not understood that part)
+* It should generate the PDF with the "Signed Signal (user name/date)" (in case its needed, did not understood that part)
 * Should upload that pdf version to an S3 bucket
 * Should update the field `s3Path` in  `document` with the path to the location of the S3 storage
 * Should return success or failure of the operation
