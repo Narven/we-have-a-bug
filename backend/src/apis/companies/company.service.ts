@@ -21,13 +21,13 @@ export class CompanyService {
     return getConnection().getRepository<Company>(Company).findOne(id);
   }
 
-  update(id: number, updateCompanyDto: UpdateCompanyDto) {
+  update(id: string, updateCompanyDto: UpdateCompanyDto) {
     return getConnection()
       .getRepository<Company>(Company)
       .update(id, updateCompanyDto);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return getConnection()
       .getRepository<Company>(Company)
       .delete(id);
