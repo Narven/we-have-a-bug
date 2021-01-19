@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { getConnection, getConnectionManager } from 'typeorm';
+import { User } from '../users/user.entity';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { Company } from './entities/company.entity';
@@ -14,11 +15,21 @@ export class CompanyService {
   }
 
   findAll(): Promise<Company[]> {
-    return getConnection().getRepository<Company>(Company).find();
+    return getConnection()
+      .getRepository<Company>(Company)
+      .find();
   }
 
   findOne(id: string): Promise<Company> {
-    return getConnection().getRepository<Company>(Company).findOne(id);
+    return getConnection()
+      .getRepository<Company>(Company)
+      .findOne(id);
+  }
+
+  findUsers(companyId: string): Promise<Company> {
+    return getConnection()
+      .getRepository<Company>(Company)
+      .findOne(companyId, { relations: ['user'] });
   }
 
   async update(id: string, updateCompanyDto: UpdateCompanyDto): Promise<Company> {

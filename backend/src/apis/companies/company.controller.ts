@@ -5,7 +5,8 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 
 @Controller('companies')
 export class CompanyController {
-  constructor(private readonly companyService: CompanyService) {}
+  constructor(private readonly companyService: CompanyService) {
+  }
 
   @Post()
   create(@Body() createCompanyDto: CreateCompanyDto) {
@@ -34,7 +35,8 @@ export class CompanyController {
   }
 
   @Get(':id/users')
-  getCompanyUsers(@Param('id') id: string) {
-    return this.companyService.findAll();
+  async getCompanyUsers(@Param('id') id: string) {
+    const result = await this.companyService.findUsers(id);
+    return result && result.user ? result.user : null;
   }
 }
