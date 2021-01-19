@@ -43,3 +43,62 @@ When the API receives the request to upload the document, it should:
 * Should return success or failure of the operation
 * Maybe if it allows of that pdf to be updated and it would need to re-signed,
     it would be good to have a versioning of the pdf on S3, and the logic update of the path to the file if needed, using
+
+
+## API Endpoints
+
+### Create User
+```shell
+curl -X "POST" "http://localhost:3000/users" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{
+"name": "Pedro 2",
+"email": "test+2@example.com"
+}'
+```
+
+### Get Users
+```shell
+curl "http://localhost:3000/users"
+```
+
+### Create Company
+```shell
+curl -X "POST" "http://localhost:3000/companies" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{
+"name": "Second Company",
+"shortDescription": "Second company short description"
+}'
+```
+
+### Get Companies
+```shell
+curl "http://localhost:3000/companies"
+```
+
+### Get Company
+```shell
+curl "http://localhost:3000/companies/da594988-0f53-4264-869a-00c5e85c6b79"
+````
+
+### Get Companies Users
+```shell
+curl "http://localhost:3000/companies/9e1d8ff4-15b7-4b57-956a-739ad489809f/users"
+```
+
+### Delete Company
+```shell
+curl -X "DELETE" "http://localhost:3000/companies/9e1d8ff4-15b7-4b57-956a-739ad489809f"
+```
+
+### Update Company
+```shell
+curl -X "PUT" "http://localhost:3000/companies/9e1d8ff4-15b7-4b57-956a-739ad489809f" \
+-H 'Content-Type: application/json; charset=utf-8' \
+-d $'{
+"name": "first company updated again",
+"shortDescription": "again",
+"user": "a9cd4921-eaa7-4f43-a328-0f66fb70342b"
+}'
+```
