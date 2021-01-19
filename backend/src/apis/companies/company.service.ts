@@ -6,7 +6,7 @@ import { Company } from './entities/company.entity';
 
 @Injectable()
 export class CompanyService {
-  create(createCompanyDto: CreateCompanyDto) {
+  create(createCompanyDto: CreateCompanyDto): Promise<Company> {
     const company = new Company();
     company.name = createCompanyDto.name;
     company.shortDescription = createCompanyDto.shortDescription;
@@ -17,14 +17,17 @@ export class CompanyService {
     return getConnection().getRepository<Company>(Company).find();
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<Company> {
     return getConnection().getRepository<Company>(Company).findOne(id);
   }
 
-  update(id: string, updateCompanyDto: UpdateCompanyDto) {
-    return getConnection()
+  async update(id: string, updateCompanyDto: UpdateCompanyDto): Promise<Company> {
+    await getConnection()
       .getRepository<Company>(Company)
       .update(id, updateCompanyDto);
+    return getConnection()
+      .getRepository<Company>(Company)
+      .findOne(id);
   }
 
   remove(id: string) {
