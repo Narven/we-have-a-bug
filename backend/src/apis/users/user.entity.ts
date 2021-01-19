@@ -1,4 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Company } from '../companies/entities/company.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -17,4 +18,6 @@ export class User extends BaseEntity {
   @CreateDateColumn()
   createdAt: Date;
 
+  @OneToMany(() => Company, company => company.user)
+  companies: Company[];
 }
